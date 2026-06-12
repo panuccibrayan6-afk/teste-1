@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio - Brayan Arthur Fontes Panucci</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* CORES PADRÃO */
+        :root {
+            --fundo: #f8f9fa;
+            --texto: #212529;
+            --destaque: #005b96;
+            --card: #ffffff;
+            --borda: #dee2e6;
+            --tamanho: 16px;
+        }
+
+        /* MODOS DE COR */
+        .modo1 {
+            --fundo: #000000;
+            --texto: #ffffff;
+            --destaque: #ffdd00;
+            --card: #1a1a1a;
+            --borda: #ffffff;
+        }
+        .modo2 {
+            --fundo: #f0f4f8;
+            --texto: #00264d;
+            --destaque: #0047ab;
+            --card: #ffffff;
+            --borda: #90be6d;
+        }
+        .modo3 {
+            --fundo: #121212;
+            --texto: #e0e0e0;
+            --destaque: #bb86fc;
+            --card: #1e1e1e;
+            --borda: #373737;
+        }
+
+        body {
+            background-color: var(--fundo);
+            color: var(--texto);
+            font-size: var(--tamanho);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* MENU DE ACESSIBILIDADE */
+        .menu {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: var(--card);
+            border: 2px solid var(--borda);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 999;
+            width: 200px;
+        }
+
+        .menu h3 {
+            font-size: 14px;
+            color: var(--destaque);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--destaque);
+            color: white;
+            border: none;
+            padding: 7px;
+            margin: 3px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .cor-opcao {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--borda);
+            cursor: pointer;
+            margin: 2px;
+        }
+        .c1 { background: #000; color: #fff; }
+        .c2 { background: #0047ab; color: #ffb703; }
+        .c3 { background: #121212; color: #e0e0e0; }
+        .c4 { background: #f8f9fa; color: #212529; border: 1px solid #999; }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto 20px;
+            background: var(--card);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--destaque);
+        }
+
+        header h1 {
+            color: var(--destaque);
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .contatos p {
+            display: inline-block;
+            background: rgba(0, 91, 150, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            margin: 3px;
+            font-size: 0.9em;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            color: var(--destaque);
+            border-left: 3px solid var(--destaque);
+            padding-left: 8px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        li::before {
+            content: "✓";
+            color: var(--destaque);
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid var(--borda);
+            color: var(--destaque);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MENU DE ACESSIBILIDADE -->
+    <div class="menu">
+        <h3>♿ ACESSIBILIDADE</h3>
+        <button class="btn" onclick="aumentar()">➕ Aumentar Letra</button>
+        <button class="btn" onclick="diminuir()">➖ Diminuir Letra</button>
+        <button class="btn" onclick="contraste()">💥 Alto Contraste</button>
+        <button class="btn" onclick="falar()">🔊 Ler Texto</button>
+        <button class="btn" onclick="parar()">🔇 Parar Voz</button>
+
+        <h3>🎨 CORES</h3>
+        <div class="cor-opcao c4" onclick="corPadrao()" title="Padrão"></div>
+        <div class="cor-opcao c1" onclick="corModo1()" title="Preto e Branco"></div>
+        <div class="cor-opcao c2" onclick="corModo2()" title="Azul e Amarelo"></div>
+        <div class="cor-opcao c3" onclick="corModo3()" title="Modo Escuro"></div>
+    </div>
+
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header>
+            <h1>Brayan Arthur Fontes Panucci</h1>
+            <p style="color: var(--destaque); font-size: 1.1em; font-weight: bold;">Programador | Desenvolvedor de Sites e Lojas Virtuais</p>
+            <div class="contatos">
+                <p>📧 panuccibrayan6@gmail.com</p>
+                <p>📷 @bpanucci</p>
+            </div>
+        </header>
+
+        <!-- Sobre Mim -->
+        <section id="texto">
+            <h2>Sobre Mim</h2>
+            <p>Sou estudante de Engenharia de Software, com conhecimento de nível médio em programação. Tenho experiência prática no desenvolvimento de sites e criação de lojas virtuais, sempre buscando criar soluções funcionais, modernas e que atendam às necessidades dos usuários. Sou apaixonado por tecnologia, aprendizado contínuo e gosto de transformar ideias em projetos reais e eficientes. Meu objetivo é evoluir cada vez mais na área e criar sistemas que sejam acessíveis para todos.</p>
+        </section>
+
+        <!-- Formação -->
+        <section>
+            <h2>Formação Acadêmica</h2>
+            <p><strong>Engenharia de Software</strong></p>
+            <p>Cursando - Em andamento</p>
+        </section>
+
+        <!-- Experiência -->
+        <section>
+            <h2>Experiência e Trabalhos Práticos</h2>
+            <ul>
+                <li>Criação de sites diversos, com estrutura responsiva e funcionalidades personalizadas;</li>
+                <li>Desenvolvimento de lojas virtuais de roupas e tênis, organizando produtos e navegação;</li>
+                <li>Programação de funcionalidades, ajustes de layout e otimização de desempenho;</li>
+                <li>Desenvolvimento de projetos personalizados.</li>
+            </ul>
+        </section>
+
+        <!-- Habilidades -->
+        <section>
+            <h2>Habilidades Técnicas</h2>
+            <ul>
+                <li>Programação - Nível Médio</li>
+                <li>Criação e Desenvolvimento de Sites</li>
+                <li>Desenvolvimento de Lojas Virtuais</li>
+                <li>Conhecimentos em HTML, CSS e JavaScript</li>
+                <li>Estruturação de projetos web</li>
+            </ul>
+            <br>
+            <h2>Habilidades Comportamentais</h2>
+            <ul>
+                <li>Raciocínio lógico e resolução de problemas</li>
+                <li>Aprendizado rápido</li>
+                <li>Organização e atenção aos detalhes</li>
+                <li>Compromisso com o resultado</li>
+            </ul>
+        </section>
+
+        <!-- Projetos -->
+        <section>
+            <h2>Projetos Desenvolvidos</h2>
+            <p><strong>Jarvim do Homem de Ferro</strong></p>
+            <p>Projeto de programação inspirado no sistema de inteligência artificial do personagem Homem de Ferro. Desenvolvido para praticar lógica, comandos e interação. Envolveu criação de comandos, respostas automáticas e estruturação de código para simular um assistente virtual.</p>
+        </section>
+
+        <!-- Idiomas -->
+        <section>
+            <h2>Idiomas</h2>
+            <p>Português: Nativo</p>
+        </section>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>Agradeço pela sua visita e estou à disposição para conversarmos melhor!</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT SUPER SIMPLES - NÃO TEM COMO DAR ERRADO -->
+    <script>
+        let tam = 16;
+        let voz = window.speechSynthesis;
+
+        // AUMENTAR E DIMINUIR
+        function aumentar() {
+            if(tam < 26) {
+                tam = tam + 2;
+                document.documentElement.style.setProperty('--tamanho', tam + 'px');
+            }
+        }
+        function diminuir() {
+            if(tam > 12) {
+                tam = tam - 2;
+                document.documentElement.style.setProperty('--tamanho', tam + 'px');
+            }
+        }
+
+        // CORES
+        function corPadrao() { document.body.className = ''; }
+        function corModo1() { document.body.className = 'modo1'; }
+        function corModo2() { document.body.className = 'modo2'; }
+        function corModo3() { document.body.className = 'modo3'; }
+        function contraste() {
+            if(document.body.className === 'modo1') document.body.className = '';
+            else document.body.className = 'modo1';
+        }
+
+        // VOZ
+        function falar() {
+            parar();
+            let texto = document.getElementById('texto').innerText;
+            let fala = new SpeechSynthesisUtterance(texto);
+            fala.lang = 'pt-BR';
+            voz.speak(fala);
+        }
+        function parar() {
+            voz.cancel();
+        }
+    </script>
+</body>
+</html>
