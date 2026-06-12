@@ -17,6 +17,7 @@
             --fundo: #f8f9fa;
             --texto: #212529;
             --destaque: #005b96;
+            --secundaria: #0077b6;
             --card: #ffffff;
             --borda: #dee2e6;
             --tamanho: 16px;
@@ -27,6 +28,7 @@
             --fundo: #000000;
             --texto: #ffffff;
             --destaque: #ffdd00;
+            --secundaria: #ffdd00;
             --card: #1a1a1a;
             --borda: #ffffff;
         }
@@ -34,6 +36,7 @@
             --fundo: #f0f4f8;
             --texto: #00264d;
             --destaque: #0047ab;
+            --secundaria: #ffb703;
             --card: #ffffff;
             --borda: #90be6d;
         }
@@ -41,6 +44,7 @@
             --fundo: #121212;
             --texto: #e0e0e0;
             --destaque: #bb86fc;
+            --secundaria: #03dac6;
             --card: #1e1e1e;
             --borda: #373737;
         }
@@ -51,103 +55,140 @@
             font-size: var(--tamanho);
             line-height: 1.6;
             padding: 20px;
+            transition: all 0.2s ease;
+        }
+
+        /* BOTÃO PARA ABRIR/FECHAR O MENU */
+        .btn-abrir-menu {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: var(--destaque);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* MENU DE ACESSIBILIDADE */
         .menu {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 70px;
+            right: 15px;
             background: var(--card);
             border: 2px solid var(--borda);
             border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 999;
-            width: 200px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            width: 220px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+        }
+
+        /* CLASSE PARA MOSTRAR O MENU */
+        .menu.aberto {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         .menu h3 {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--destaque);
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .btn {
             width: 100%;
-            background: var(--destaque);
+            background: var(--secundaria);
             color: white;
             border: none;
-            padding: 7px;
-            margin: 3px 0;
-            border-radius: 4px;
+            padding: 9px;
+            margin: 5px 0;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .btn:hover {
-            opacity: 0.8;
+            opacity: 0.9;
+        }
+
+        .cores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .cor-opcao {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 4px;
-            border: 1px solid var(--borda);
+            border: 2px solid var(--borda);
             cursor: pointer;
-            margin: 2px;
         }
-        .c1 { background: #000; color: #fff; }
-        .c2 { background: #0047ab; color: #ffb703; }
-        .c3 { background: #121212; color: #e0e0e0; }
-        .c4 { background: #f8f9fa; color: #212529; border: 1px solid #999; }
+        .c1 { background: #f8f9fa; }
+        .c2 { background: #000000; }
+        .c3 { background: #0047ab; }
+        .c4 { background: #121212; }
 
         .container {
             max-width: 1000px;
-            margin: 60px auto 20px;
+            margin: 20px auto;
             background: var(--card);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--destaque);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--destaque);
         }
 
         header h1 {
             color: var(--destaque);
             font-size: 2em;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .contatos p {
             display: inline-block;
             background: rgba(0, 91, 150, 0.1);
-            padding: 4px 12px;
-            border-radius: 15px;
-            margin: 3px;
-            font-size: 0.9em;
+            padding: 6px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.95em;
         }
 
         section {
-            margin-bottom: 20px;
-            padding: 12px;
-            border-radius: 6px;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
             background: rgba(0,0,0,0.02);
         }
 
         h2 {
             color: var(--destaque);
-            border-left: 3px solid var(--destaque);
-            padding-left: 8px;
-            margin-bottom: 10px;
-            font-size: 1.3em;
+            border-left: 4px solid var(--secundaria);
+            padding-left: 10px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
         }
 
         ul {
@@ -157,26 +198,28 @@
 
         li::before {
             content: "✓";
-            color: var(--destaque);
+            color: var(--secundaria);
             font-weight: bold;
-            margin-right: 6px;
+            margin-right: 8px;
         }
 
         footer {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid var(--borda);
-            color: var(--destaque);
-            font-size: 0.9em;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid var(--borda);
+            color: var(--secundaria);
         }
     </style>
 </head>
 <body>
 
+    <!-- BOTÃO PARA ABRIR/FECHAR MENU -->
+    <button class="btn-abrir-menu" onclick="abrirFecharMenu()">♿</button>
+
     <!-- MENU DE ACESSIBILIDADE -->
-    <div class="menu">
-        <h3>♿ ACESSIBILIDADE</h3>
+    <div class="menu" id="menuAcessibilidade">
+        <h3>ACESSIBILIDADE</h3>
         <button class="btn" onclick="aumentar()">➕ Aumentar Letra</button>
         <button class="btn" onclick="diminuir()">➖ Diminuir Letra</button>
         <button class="btn" onclick="contraste()">💥 Alto Contraste</button>
@@ -184,17 +227,19 @@
         <button class="btn" onclick="parar()">🔇 Parar Voz</button>
 
         <h3>🎨 CORES</h3>
-        <div class="cor-opcao c4" onclick="corPadrao()" title="Padrão"></div>
-        <div class="cor-opcao c1" onclick="corModo1()" title="Preto e Branco"></div>
-        <div class="cor-opcao c2" onclick="corModo2()" title="Azul e Amarelo"></div>
-        <div class="cor-opcao c3" onclick="corModo3()" title="Modo Escuro"></div>
+        <div class="cores">
+            <div class="cor-opcao c1" onclick="corPadrao()" title="Padrão"></div>
+            <div class="cor-opcao c2" onclick="corModo1()" title="Preto e Branco"></div>
+            <div class="cor-opcao c3" onclick="corModo2()" title="Azul e Amarelo"></div>
+            <div class="cor-opcao c4" onclick="corModo3()" title="Modo Escuro"></div>
+        </div>
     </div>
 
     <div class="container">
         <!-- Cabeçalho -->
         <header>
             <h1>Brayan Arthur Fontes Panucci</h1>
-            <p style="color: var(--destaque); font-size: 1.1em; font-weight: bold;">Programador | Desenvolvedor de Sites e Lojas Virtuais</p>
+            <p style="color: var(--secundaria); font-size: 1.1em; font-weight: 500;">Programador | Desenvolvedor de Sites e Lojas Virtuais</p>
             <div class="contatos">
                 <p>📧 panuccibrayan6@gmail.com</p>
                 <p>📷 @bpanucci</p>
@@ -264,36 +309,41 @@
         </footer>
     </div>
 
-    <!-- JAVASCRIPT SUPER SIMPLES - NÃO TEM COMO DAR ERRADO -->
+    <!-- JAVASCRIPT -->
     <script>
         let tam = 16;
         let voz = window.speechSynthesis;
 
-        // AUMENTAR E DIMINUIR
+        // Função para abrir e fechar o menu
+        function abrirFecharMenu() {
+            const menu = document.getElementById('menuAcessibilidade');
+            menu.classList.toggle('aberto');
+        }
+
+        // Aumentar e diminuir letra
         function aumentar() {
             if(tam < 26) {
-                tam = tam + 2;
+                tam += 2;
                 document.documentElement.style.setProperty('--tamanho', tam + 'px');
             }
         }
         function diminuir() {
             if(tam > 12) {
-                tam = tam - 2;
+                tam -= 2;
                 document.documentElement.style.setProperty('--tamanho', tam + 'px');
             }
         }
 
-        // CORES
+        // Cores
         function corPadrao() { document.body.className = ''; }
         function corModo1() { document.body.className = 'modo1'; }
         function corModo2() { document.body.className = 'modo2'; }
         function corModo3() { document.body.className = 'modo3'; }
         function contraste() {
-            if(document.body.className === 'modo1') document.body.className = '';
-            else document.body.className = 'modo1';
+            document.body.classList.toggle('modo1');
         }
 
-        // VOZ
+        // Voz
         function falar() {
             parar();
             let texto = document.getElementById('texto').innerText;
