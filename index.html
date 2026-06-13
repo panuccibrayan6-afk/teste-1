@@ -356,4 +356,362 @@
         }
     </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio - Brayan Arthur Fontes Panucci</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* CORES PADRÃO */
+        :root {
+            --fundo: #f8f9fa;
+            --texto: #212529;
+            --destaque: #005b96;
+            --secundaria: #0077b6;
+            --card: #ffffff;
+            --borda: #dee2e6;
+            --tamanho: 16px;
+        }
+
+        /* MODOS DE COR */
+        .modo1 {
+            --fundo: #000000;
+            --texto: #ffffff;
+            --destaque: #ffdd00;
+            --secundaria: #ffdd00;
+            --card: #1a1a1a;
+            --borda: #ffffff;
+        }
+        .modo2 {
+            --fundo: #f0f4f8;
+            --texto: #00264d;
+            --destaque: #0047ab;
+            --secundaria: #ffb703;
+            --card: #ffffff;
+            --borda: #90be6d;
+        }
+        .modo3 {
+            --fundo: #121212;
+            --texto: #e0e0e0;
+            --destaque: #bb86fc;
+            --secundaria: #03dac6;
+            --card: #1e1e1e;
+            --borda: #373737;
+        }
+
+        body {
+            background-color: var(--fundo);
+            color: var(--texto);
+            font-size: var(--tamanho);
+            line-height: 1.6;
+            padding: 20px;
+            transition: all 0.2s ease;
+        }
+
+        /* BOTÃO PARA ABRIR/FECHAR O MENU */
+        .btn-abrir-menu {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: var(--destaque);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* MENU DE ACESSIBILIDADE */
+        .menu {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background: var(--card);
+            border: 2px solid var(--borda);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            width: 220px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+        }
+
+        /* CLASSE PARA MOSTRAR O MENU */
+        .menu.aberto {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .menu h3 {
+            font-size: 15px;
+            color: var(--destaque);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--secundaria);
+            color: white;
+            border: none;
+            padding: 9px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .cores {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .cor-opcao {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            border: 2px solid var(--borda);
+            cursor: pointer;
+        }
+        .c1 { background: #f8f9fa; }
+        .c2 { background: #000000; }
+        .c3 { background: #0047ab; }
+        .c4 { background: #121212; }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--destaque);
+        }
+
+        header h1 {
+            color: var(--destaque);
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        .contatos p {
+            display: inline-block;
+            background: rgba(0, 91, 150, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.95em;
+        }
+
+        section {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.02);
+        }
+
+        h2 {
+            color: var(--destaque);
+            border-left: 4px solid var(--secundaria);
+            padding-left: 10px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        li::before {
+            content: "✓";
+            color: var(--secundaria);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid var(--borda);
+            color: var(--secundaria);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOTÃO PARA ABRIR/FECHAR MENU -->
+    <button class="btn-abrir-menu" onclick="abrirFecharMenu()">♿</button>
+
+    <!-- MENU DE ACESSIBILIDADE -->
+    <div class="menu" id="menuAcessibilidade">
+        <h3>ACESSIBILIDADE</h3>
+        <button class="btn" onclick="aumentar()">➕ Aumentar Letra</button>
+        <button class="btn" onclick="diminuir()">➖ Diminuir Letra</button>
+        <button class="btn" onclick="contraste()">💥 Alto Contraste</button>
+        <button class="btn" onclick="falar()">🔊 Ler Texto</button>
+        <button class="btn" onclick="parar()">🔇 Parar Voz</button>
+
+        <h3>🎨 CORES</h3>
+        <div class="cores">
+            <div class="cor-opcao c1" onclick="corPadrao()" title="Padrão"></div>
+            <div class="cor-opcao c2" onclick="corModo1()" title="Preto e Branco"></div>
+            <div class="cor-opcao c3" onclick="corModo2()" title="Azul e Amarelo"></div>
+            <div class="cor-opcao c4" onclick="corModo3()" title="Modo Escuro"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header>
+            <h1>Brayan Arthur Fontes Panucci</h1>
+            <p style="color: var(--secundaria); font-size: 1.1em; font-weight: 500;">Programador | Desenvolvedor de Sites e Lojas Virtuais</p>
+            <div class="contatos">
+                <p>📧 panuccibrayan6@gmail.com</p>
+                <p>📷 @bpanucci</p>
+            </div>
+        </header>
+
+        <!-- Sobre Mim -->
+        <section id="texto">
+            <h2>Sobre Mim</h2>
+            <p>Sou estudante de Engenharia de Software, com conhecimento de nível médio em programação. Tenho experiência prática no desenvolvimento de sites e criação de lojas virtuais, sempre buscando criar soluções funcionais, modernas e que atendam às necessidades dos usuários. Sou apaixonado por tecnologia, aprendizado contínuo e gosto de transformar ideias em projetos reais e eficientes. Meu objetivo é evoluir cada vez mais na área e criar sistemas que sejam acessíveis para todos.</p>
+        </section>
+
+        <!-- Formação -->
+        <section>
+            <h2>Formação Acadêmica</h2>
+            <p><strong>Engenharia de Software</strong></p>
+            <p>Cursando - Em andamento</p>
+        </section>
+
+        <!-- Experiência -->
+        <section>
+            <h2>Experiência e Trabalhos Práticos</h2>
+            <ul>
+                <li>Criação de sites diversos, com estrutura responsiva e funcionalidades personalizadas;</li>
+                <li>Desenvolvimento de lojas virtuais de roupas e tênis, organizando produtos e navegação;</li>
+                <li>Programação de funcionalidades, ajustes de layout e otimização de desempenho;</li>
+                <li>Desenvolvimento de projetos personalizados.</li>
+            </ul>
+        </section>
+
+        <!-- Habilidades -->
+        <section>
+            <h2>Habilidades Técnicas</h2>
+            <ul>
+                <li>Programação - Nível Médio</li>
+                <li>Criação e Desenvolvimento de Sites</li>
+                <li>Desenvolvimento de Lojas Virtuais</li>
+                <li>Conhecimentos em HTML, CSS e JavaScript</li>
+                <li>Estruturação de projetos web</li>
+            </ul>
+            <br>
+            <h2>Habilidades Comportamentais</h2>
+            <ul>
+                <li>Raciocínio lógico e resolução de problemas</li>
+                <li>Aprendizado rápido</li>
+                <li>Organização e atenção aos detalhes</li>
+                <li>Compromisso com o resultado</li>
+            </ul>
+        </section>
+
+        <!-- Projetos -->
+        <section>
+            <h2>Projetos Desenvolvidos</h2>
+            <p><strong>Jarvim do Homem de Ferro</strong></p>
+            <p>Projeto de programação inspirado no sistema de inteligência artificial do personagem Homem de Ferro. Desenvolvido para praticar lógica, comandos e interação. Envolveu criação de comandos, respostas automáticas e estruturação de código para simular um assistente virtual.</p>
+        </section>
+
+        <!-- Idiomas -->
+        <section>
+            <h2>Idiomas</h2>
+            <p>Português: Nativo</p>
+        </section>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>Agradeço pela sua visita e estou à disposição para conversarmos melhor!</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        let tam = 16;
+        let voz = window.speechSynthesis;
+
+        // Função para abrir e fechar o menu
+        function abrirFecharMenu() {
+            const menu = document.getElementById('menuAcessibilidade');
+            menu.classList.toggle('aberto');
+        }
+
+        // Aumentar e diminuir letra
+        function aumentar() {
+            if(tam < 26) {
+                tam += 2;
+                document.documentElement.style.setProperty('--tamanho', tam + 'px');
+            }
+        }
+        function diminuir() {
+            if(tam > 12) {
+                tam -= 2;
+                document.documentElement.style.setProperty('--tamanho', tam + 'px');
+            }
+        }
+
+        // Cores
+        function corPadrao() { document.body.className = ''; }
+        function corModo1() { document.body.className = 'modo1'; }
+        function corModo2() { document.body.className = 'modo2'; }
+        function corModo3() { document.body.className = 'modo3'; }
+        function contraste() {
+            document.body.classList.toggle('modo1');
+        }
+
+        // Voz
+        function falar() {
+            parar();
+            let texto = document.getElementById('texto').innerText;
+            let fala = new SpeechSynthesisUtterance(texto);
+            fala.lang = 'pt-BR';
+            voz.speak(fala);
+        }
+        function parar() {
+            voz.cancel();
+        }
+    </script>
+</body>
 </html>
